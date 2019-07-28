@@ -13,13 +13,10 @@ public class Main {
 
         producerExecutor.submit(new Producer(blockingQueue, "P-R-O-D-U-C-E-R"));
 
-        consumerExecutor.submit(new Consumer(blockingQueue, "First Consumer"));
-        consumerExecutor.submit(new Consumer(blockingQueue, "Second Consumer"));
-        consumerExecutor.submit(new Consumer(blockingQueue, "Third Consumer"));
-        consumerExecutor.submit(new Consumer(blockingQueue, "Fourth Consumer"));
+        for (int i = 1; i <= numberConsumer; i++)
+            consumerExecutor.submit(new Consumer(blockingQueue, "Consumer " + i));
 
         producerExecutor.shutdown();
         consumerExecutor.shutdown();
-
     }
 }
